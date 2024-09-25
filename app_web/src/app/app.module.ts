@@ -18,7 +18,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {provideNativeDateAdapter} from '@angular/material/core';
-
+import { GoogleMapsModule } from "@angular/google-maps";
 
 @NgModule({
   declarations: [
@@ -40,7 +40,8 @@ import {provideNativeDateAdapter} from '@angular/material/core';
     MatIconModule,
     MatInputModule,
     MatDatepickerModule,
-    MatFormFieldModule    
+    MatFormFieldModule,
+    GoogleMapsModule
   ],
   providers: [
     provideClientHydration(),

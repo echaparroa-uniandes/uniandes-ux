@@ -12,11 +12,22 @@
   <div class="contenedor-fecha">
     <div class="sub-titulo-seccion">Seleccione Fecha:</div>
     <mat-form-field>
-      <input matInput [matDatepicker]="picker">
+      <input matInput [matDatepicker]="picker" (dateChange)="onDateChange($event)">
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </div>
-  <img src="../../../assets/images/ruta-trabajador.png" alt="" srcset="">
+  <google-map height="450px"
+    width="100%"
+    [center]="center"
+    [zoom]="zoom">
+    <map-marker *ngFor="let marker of markers"
+      [position]="marker.position"
+      [label]="marker.label"
+      [title]="marker.title"
+      [options]="marker.options"
+    >
+    </map-marker>              
+  </google-map>
 </div>
