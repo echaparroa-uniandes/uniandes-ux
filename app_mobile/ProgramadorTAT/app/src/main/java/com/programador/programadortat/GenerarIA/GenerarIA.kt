@@ -16,25 +16,19 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -189,7 +183,17 @@ fun LabelAndTextFieldIA(label: String, alarmNumber: Int) {
                 focusedContainerColor = Color.Transparent,
                 unfocusedContainerColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
+                unfocusedIndicatorColor = Color.Transparent,
+                focusedTextColor = Color(0XFF351330),
+                unfocusedTextColor = Color(0XFF351330),
+                disabledTextColor = Color(0XFF351330)
+            ),
+            textStyle = androidx.compose.ui.text.TextStyle(
+                fontFamily = poppinsBottonStyle.fontFamily,
+                fontSize = poppinsBottonStyle.fontSize,
+                fontWeight = poppinsBottonStyle.fontWeight,
+                color = poppinsBottonStyle.color,
+                textAlign = TextAlign.Center
             ),
             onValueChange = { newText -> textState.value = newText },
             modifier = Modifier.fillMaxWidth(),
@@ -208,7 +212,6 @@ fun LabelAndTextFieldIA(label: String, alarmNumber: Int) {
                     )
                 }
             },
-            textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
             keyboardOptions = KeyboardOptions.Default.copy(
                 imeAction = ImeAction.Done
             ),
@@ -257,7 +260,17 @@ fun InformeTextFieldIA(label: String) {
                 focusedContainerColor = Color.Transparent,
                 unfocusedContainerColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
+                unfocusedIndicatorColor = Color.Transparent,
+                focusedTextColor = Color(0XFF351330),
+                unfocusedTextColor = Color(0XFF351330),
+                disabledTextColor = Color(0XFF351330)
+            ),
+            textStyle = androidx.compose.ui.text.TextStyle(
+                fontFamily = poppinsBottonStyle.fontFamily,
+                fontSize = poppinsBottonStyle.fontSize,
+                fontWeight = poppinsBottonStyle.fontWeight,
+                color = poppinsBottonStyle.color,
+                textAlign = TextAlign.Center
             ),
             onValueChange = { newText -> textState.value = newText },
             modifier = Modifier
@@ -279,7 +292,6 @@ fun InformeTextFieldIA(label: String) {
                 }
             },
 
-            textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
             keyboardOptions = KeyboardOptions.Default.copy(
                 imeAction = ImeAction.Done // Establece la acción del teclado en "Done"
             ),

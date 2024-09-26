@@ -9,19 +9,17 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -29,18 +27,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.programador.programadortat.Navigation.AppScreen
 import com.programador.programadortat.R
@@ -79,18 +70,23 @@ fun Options(navController: NavController) {
                 fontWeight = poppinsAppStyle.fontWeight,
                 color = poppinsAppStyle.color
             )
-            Row (
-                modifier = Modifier.padding(top = 16.dp),
-                )
-            {
-                Text(
-                    modifier = Modifier.padding(top = 5.dp),
-                    text = "!Hola¡, Usuario",
-                    fontFamily = poppinsTitleStyle.fontFamily,
-                    fontSize = poppinsTitleStyle.fontSize,
-                    fontWeight = poppinsTitleStyle.fontWeight,
-                    color = poppinsTitleStyle.color
-                )
+            Row(
+                modifier = Modifier.padding(top = 16.dp).fillMaxWidth(), // Asegúrate de que la fila ocupe todo el ancho
+                verticalAlignment = Alignment.CenterVertically // Alinear verticalmente al centro
+            ) {
+                Box(
+                    modifier = Modifier.weight(1f)
+                        .padding(start = 60.dp), // Esto permite que el texto ocupe el espacio disponible
+                    contentAlignment = Alignment.Center // Centra el texto dentro del Box
+                ) {
+                    Text(
+                        text = "!Hola¡, Usuario",
+                        fontFamily = poppinsTitleStyle.fontFamily,
+                        fontSize = poppinsTitleStyle.fontSize,
+                        fontWeight = poppinsTitleStyle.fontWeight,
+                        color = poppinsTitleStyle.color
+                    )
+                }
                 Box(
                     modifier = Modifier.size(40.dp),
                     contentAlignment = Alignment.Center,
@@ -98,12 +94,12 @@ fun Options(navController: NavController) {
                     Image(
                         painter = painterResource(id = R.drawable.avatar),
                         contentDescription = null,
-                        modifier = Modifier
-                            .size(40.dp)
-                            .padding(end = 3.dp)
+                        modifier = Modifier.size(40.dp)
                     )
                 }
             }
+
+
             newButton(onClick = { navController.navigate(AppScreen.CrearAlarma.route) }, nombre = "CREAR ALARMA", imagen = R.drawable.editar)
             newButton(onClick = { navController.navigate(AppScreen.VerAlarmas.route) }, nombre = "VER ALARMAS", imagen = R.drawable.ver)
             newButton(onClick = { navController.navigate(AppScreen.GenerarIA.route) }, nombre = "GENERAR CON IA", imagen = R.drawable.ia)
@@ -113,6 +109,7 @@ fun Options(navController: NavController) {
         }
     }
 }
+
 
 @Composable
 fun newButton(onClick: () -> Unit, nombre: String, imagen: Int, enabled: Boolean = true) {
@@ -126,26 +123,27 @@ fun newButton(onClick: () -> Unit, nombre: String, imagen: Int, enabled: Boolean
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 20.dp)
-            .border(2.dp, Color(0xFF3E6963), RoundedCornerShape(12.dp)) // Borde con el color especificado
+            .border(2.dp, Color(0xFF3E6963), RoundedCornerShape(12.dp))
     ) {
-        // Sombra debajo del botón
+
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(4.dp) // Altura de la sombra
-                .background(Color.Black.copy(alpha = 0.3f)) // Color y opacidad de la sombra
-                .align(Alignment.BottomCenter) // Alinear la sombra al fondo
-                .clip(RoundedCornerShape(12.dp)) // Redondear las esquinas de la sombra
-                .offset(y = 2.dp) // Desplazar hacia abajo
+                .padding(start = 9.dp, end =5.dp)
+                .height(4.dp)
+                .width(200.dp)
+                .offset(y = 4.dp)
+                .background(Color(0XFF424254).copy(alpha = 0.5f))
+                .clip(RoundedCornerShape(bottomStart = 100.dp, bottomEnd = 100.dp))
+                .align(Alignment.BottomCenter)
         )
 
-        // Fondo del botón
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 4.dp)
                 .clip(RoundedCornerShape(12.dp))
                 .background(currentColor)
+                .padding(bottom = 4.dp)
         ) {
             Button(
                 enabled = enabled,
@@ -154,8 +152,7 @@ fun newButton(onClick: () -> Unit, nombre: String, imagen: Int, enabled: Boolean
                     containerColor = Color.Transparent // Hacer el botón transparente
                 ),
                 shape = RoundedCornerShape(12.dp),
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 interactionSource = interactionSource
             ) {
                 Row(
@@ -197,4 +194,3 @@ fun newButton(onClick: () -> Unit, nombre: String, imagen: Int, enabled: Boolean
         }
     }
 }
-
